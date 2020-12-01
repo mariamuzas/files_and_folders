@@ -2,8 +2,10 @@ package com.codeclan.example.files_folders.components;
 
 import com.codeclan.example.files_folders.models.File;
 import com.codeclan.example.files_folders.models.Folder;
+import com.codeclan.example.files_folders.models.User;
 import com.codeclan.example.files_folders.repositories.FileRepository;
 import com.codeclan.example.files_folders.repositories.FolderRepository;
+import com.codeclan.example.files_folders.repositories.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
@@ -17,11 +19,17 @@ public class DataLoader implements ApplicationRunner {
     @Autowired
     FolderRepository folderRepository;
 
+    @Autowired
+    UserRepository userRepository;
+
     public DataLoader() {
     }
 
     public void run(ApplicationArguments args) {
-        Folder folder = new Folder("CodeClan");
+        User user = new User("Maria");
+        userRepository.save(user);
+
+        Folder folder = new Folder("CodeClan", user);
         folderRepository.save(folder);
 
         File file = new File("Notes", "doc", "23mb", folder );

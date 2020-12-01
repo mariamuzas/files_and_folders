@@ -19,8 +19,14 @@ public class Folder {
     @JsonIgnoreProperties({"folder"})
     private List<File> files;
 
-    public Folder(String title) {
+    @ManyToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    @JsonIgnoreProperties({"folder"})
+    private User user;
+
+    public Folder(String title, User user) {
         this.title = title;
+        this.user = user;
 //        this.files = new ArrayList<>();
     }
 
