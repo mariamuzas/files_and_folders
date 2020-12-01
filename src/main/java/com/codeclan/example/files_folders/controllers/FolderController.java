@@ -26,7 +26,7 @@ public class FolderController {
         return new ResponseEntity<>(folderRepository.findById(id), HttpStatus.OK);
     }
 
-    @PostMapping
+    @PostMapping(value = "/folders")
     public ResponseEntity<Folder> postFolder(@RequestBody Folder folder) {
         Folder newFolder = folderRepository.save(folder);
         return new ResponseEntity<>(newFolder, HttpStatus.OK);
