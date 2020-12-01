@@ -50,4 +50,12 @@ public class Folder {
     public void setFiles(List<File> files) {
         this.files = files;
     }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
 }
