@@ -16,7 +16,7 @@ public class User {
     @Column(name = "name")
     private String name;
 
-    @JsonBackReference // ignore the repetition after one is already state.
+//    @JsonBackReference // ignore the repetition after one is already state.
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"user"})
     private List<Folder> folders;
