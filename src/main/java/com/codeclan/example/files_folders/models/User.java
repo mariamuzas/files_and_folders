@@ -1,5 +1,6 @@
 package com.codeclan.example.files_folders.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -15,6 +16,7 @@ public class User {
     @Column(name = "name")
     private String name;
 
+    @JsonBackReference // ignore the repetition after one is already state.
     @OneToMany(mappedBy = "user", fetch = FetchType.LAZY)
     @JsonIgnoreProperties({"user"})
     private List<Folder> folders;

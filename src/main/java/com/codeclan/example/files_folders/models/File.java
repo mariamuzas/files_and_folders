@@ -1,5 +1,6 @@
 package com.codeclan.example.files_folders.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
@@ -17,9 +18,11 @@ public class File {
     private String extension;
     @Column(name="size")
     private String size;
+
     @ManyToOne
+    @JsonBackReference // ignore the repetition after one is already state.
     @JoinColumn(name = "folder_id", nullable = false)
-    @JsonIgnoreProperties({"files"})
+//    @JsonIgnoreProperties({"files"})
     private Folder folder;
 
     public File(String name, String extension, String size, Folder folder) {

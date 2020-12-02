@@ -1,8 +1,10 @@
 package com.codeclan.example.files_folders.models;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -19,6 +21,7 @@ public class Folder {
     @JsonIgnoreProperties({"folder"})
     private List<File> files;
 
+    @JsonBackReference // ignore the repetition after one is already state.
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     @JsonIgnoreProperties({"folder"})
@@ -27,7 +30,7 @@ public class Folder {
     public Folder(String title, User user) {
         this.title = title;
         this.user = user;
-//        this.files = new ArrayList<>();
+        this.files = new ArrayList<>();
     }
 
     public Folder(){}
